@@ -1,0 +1,11 @@
+package kr.spring.controller;
+
+import org.springframework.stereotype.Controller;
+
+import kr.spring.service.BoardService;
+
+@Controller
+public class BoardController {
+	
+	private BoardService boardService;
+}

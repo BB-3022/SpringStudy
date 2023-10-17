@@ -1,0 +1,19 @@
+SELECT * FROM BOARD;
+
+INSERT INTO BOARD(TITLE, CONTENT, WRITER)
+VALUES('월요일','수라상 감자탕 오픈','명훈쌤');
+
+INSERT INTO BOARD(TITLE, CONTENT, WRITER)
+VALUES('화요일','오므라이스 먹으러가자','조준용');
+
+INSERT INTO BOARD(TITLE, CONTENT, WRITER)
+VALUES('수요일','일주일의 절반','박병관');
+
+INSERT INTO BOARD(TITLE, CONTENT, WRITER)
+VALUES('목요일','하루만 지나면 금요일','박보배');
+
+INSERT INTO BOARD(TITLE, CONTENT, WRITER)
+VALUES('금요일','금요일이다!','손민초');
+
+INSERT INTO BOARD(TITLE, CONTENT, WRITER)
+VALUES('토요일','주말좋아','김태연');
