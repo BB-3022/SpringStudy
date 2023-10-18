@@ -1,5 +1,0 @@
-package kr.spring.repository;
-
-public interface BoardRepository {
-
-}

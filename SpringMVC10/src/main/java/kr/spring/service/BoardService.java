@@ -11,5 +11,9 @@ public interface BoardService {
 	public void register(Board vo); // 게시글 등록
 
 	public Board get(Long idx); // 해당 게시글 조회
+
+	public void delete(Long idx);
+
+	public void update(Board vo);
 	
 }
