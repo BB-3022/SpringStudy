@@ -6,8 +6,15 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="form"/>
+		<item key="selection" value=""/>
 		<list key="findhistory">
+			<item value="DispatcherServlet"/>
+			<item value="appServlet"/>
+			<item value="goForm"/>
+			<item value="글쓰기"/>
+			<item value="readonly"/>
+			<item value="principal"/>
+			<item value="mmeber"/>
 			<item value="forM"/>
 			<item value="frm"/>
 			<item value="d"/>
@@ -16,12 +23,6 @@
 			<item value="isbn"/>
 			<item value="board"/>
 			<item value="talboard"/>
-			<item value="appServlet"/>
-			<item value="실패"/>
-			<item value="update"/>
-			<item value="shosse"/>
-			<item value="&lt;%@ page language=&quot;java&quot; contentType=&quot;text/html; charset=UTF-8&quot;"/>
-			<item value="/Users/EGOVEDU/eGovFrame-3.10.0/"/>
 		</list>
 		<list key="replacehistory">
 		</list>

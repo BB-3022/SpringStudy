@@ -97,6 +97,7 @@
          listHtml += "<tr>";
          listHtml += "<td>" +(index+1) +"</td>";
          listHtml += "<td id ='t" +obj.idx+"'>"
+         // a 태그를 클릭하는 순간 페이지 이동 없이, 자바스크립트 작동
          listHtml += "<a href ='javascript:goContent("+ obj.idx +")'>";
          listHtml += obj.title;                
          listHtml += "</a>";            
@@ -108,7 +109,7 @@
          listHtml +="</tr>";         
          
          //상세보기 화면
-         listHtml += "<tr id ='c" +    obj.idx +"' style = 'display :none'>";
+         listHtml += "<tr id ='c" + obj.idx +"' style = 'display :none'>";
             listHtml += "<td>내용</td>";
             listHtml += "<td colspan ='4'>";
                listHtml += "<textarea id='ta"+ obj.idx+"' readonly style = 'resize:none' rows='7' class ='form-control'>";   
@@ -161,7 +162,8 @@
    }
    
    function goContent(idx){
-     if($("#c"+idx).css("display") == "none"){
+		// 디스플레이 속성값을 가지고 와서 비교     
+	   if($("#c"+idx).css("display") == "none"){
         
         $.ajax({
            url : "board/" + idx,   //패스베리어블방식

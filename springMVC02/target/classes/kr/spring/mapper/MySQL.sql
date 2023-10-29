@@ -27,6 +27,8 @@ VALUES('금요일','점심에 항상 상추쌈 나오는 날','EEE');
 
 SELECT * FROM BOARD;
 
+DROP TABLE BOARD;
+
 
 
 

@@ -26,7 +26,6 @@
 		   		<tr class="active">
 		   			<td>번호</td>
 		   			<td>제목</td>
-		   			<td>내용</td>
 		   			<td>작성자</td>
 		   			<td>작성일</td>
 		   			<td>조회수</td>
@@ -103,13 +102,12 @@
 		$.each(data, function(index, obj){
 			listHtml += "<tr>";
 	         listHtml += "<td>" +(index+1) +"</td>";
-	         listHtml += "<td id ='t" +obj.idx+"'>"
+	         listHtml += "<td id ='t" + obj.idx + "'>";
 	         listHtml += "<a href ='javascript:goContent("+ obj.idx +")'>";
 	         listHtml += obj.title;                
 	         listHtml += "</a>";            
 	         listHtml += "</td>";
-	         listHtml +="<td id ='w"+obj.idx+"'>" +obj.content +"</td>";
-	         listHtml +="<td>" +obj.writer +"</td>";
+	         listHtml +="<td id='w" + obj.idx + "'>" +obj.writer +"</td>";
 	         listHtml +="<td>" +obj.indate +"</td>";
 	         listHtml +="<td>" +obj.count +"</td>";
 	         listHtml +="</tr>"; 	
@@ -118,14 +116,14 @@
 	         listHtml += "<tr id ='c" + obj.idx +"' style = 'display : none'>";
 	         listHtml += "<td>내용</td>";
 	         listHtml += "<td colspan ='4'>";
-	         listHtml += "<textarea id='ta"+ obj.idx+"' readonly style = 'resize:none' rows='7' class ='form-control'>";   
+	         listHtml += "<textarea id='ta" + obj.idx + "' readonly style = 'resize:none' rows='7' class ='form-control'>";   
 	         listHtml += obj.content;   
 	         listHtml += "</textarea>";       
 	         
 	         //수정 삭제 화면
 	         listHtml += "<br>";
-	         listHtml += "<span id ='ub"+obj.idx+"'>";
-	         listHtml +="<button onclick='goUpdateForm("+obj.idx+")' class = 'btn btn-primary btn-sm'>수정화면</button></span> &nbsp"
+	         listHtml += "<span id ='ub" + obj.idx + "'>";
+	         listHtml +="<button onclick='goUpdateForm(" + obj.idx + ")' class = 'btn btn-primary btn-sm'>수정화면</button></span> &nbsp"
 	         listHtml +="<button onclick='goDelete(" + obj.idx +" )' class = 'btn btn-warning btn-sm'>삭제</button> &nbsp"   
 	         listHtml += "</td>";        
 	         listHtml += "</tr>";
@@ -164,7 +162,7 @@
 		
 		// trigger() : 강제로 이벤트 실행
 		// 게시글 작성 후, 게시글 입력데이터 지우기
-		$("#fclear").trigger("click";)
+		$("#fclear").trigger("click");
 	}
 	
 	function goContent(idx){
@@ -203,12 +201,46 @@
 	         url : "board/" + idx,
 	         type: "delete",
 	         data: {"idx" : idx},
-	         success:  loadList,
+	         success: loadList,
 	         error: function(){alert("error")}
-
 	      });
-	      
 	   }
+	
+	function goUpdateForm(idx){
+		// 수정화면을 눌렀을 때 내용을 수정할 수 있도록, readonly false 로 변경
+		$("#ta" + idx).attr("readonly", false);
+		// 제목 수정
+		var title = $("#t" + idx).text();
+		var newTitle = "<input id='nt" + idx +"' value='" + title + "' type='text' class='form-control'>";
+		$("#t" + idx).html(newTitle);
+		// 작성자 수정
+		var writer = $("#t" + idx).text();
+		var newWriter = "<input id='nw" + idx + "' value='" + writer + "' type='text' class='form-control'>";
+		$("#w" + idx).html(newWriter);
+		
+		// 수정 버튼으로 변경
+		var newBtn = "<button onclick='goUpdate(" + idx + ")' class='btn btn-primary btn-sm'>수정</button>";
+		$("#ub" + idx).html(newBtn);
+	}
+	
+	function goUpdate(idx){
+		var title = $("#nt" + idx).val();
+		var content = $("#ta" + idx).val();
+		var writer = $("#nw" + idx).val();
+		
+		//console.log(title + "/" + content + "/" + writer);
+		
+		$.ajax({
+	         url : "boardUpdate.do",
+	         type: "put",
+	         data: "json",
+	         success: loadList,
+	         error: function(){alert("error")}
+	      });
+		
+	}
+	
+	
 	
 	</script>
 	
