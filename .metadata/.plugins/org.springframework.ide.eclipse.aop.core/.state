@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <aop-reference-model>
-<aop-project name="SpringMVC11"/>
-<aop-project name="SpringMVC08"/>
-<aop-project name="SpringMVC06"/>
-<aop-project name="SpringMVC04"/>
-<aop-project name="springMVC02"/>
-<aop-project name="SpringMVC07"/>
-<aop-project name="SpringMVC05"/>
-<aop-project name="SpringMVC09"/>
-<aop-project name="SpringMVC10"/>
-<aop-project name="springMVC01"/>
-<aop-project name="springMVC03"/>
-<aop-project name="springMVC2"/>
-<aop-project name="Project_DrawColley"/>
+<aop-project name="SpringMVC01"/>
+<aop-project name="SpringMVC03"/>
 <aop-project name="SpringBook"/>
 </aop-reference-model>

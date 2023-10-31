@@ -28,7 +28,7 @@ public class MemberController {
 	@Autowired
 	private MemberMapper mapper;
 	
-	@Autowired
+	@Autowired // 내가 만들어 놓은 비밀번호 암호화 객체를 주입받아 사용하겠다
 	private PasswordEncoder pwEncoder;
 	
 	@RequestMapping("/joinForm.do")
@@ -61,9 +61,8 @@ public class MemberController {
 		if(m.getMemID() == null || m.getMemID().equals("") 
 				|| m.getMemPassword() == null || m.getMemPassword().equals("")
 				|| m.getMemName() == null || m.getMemName().equals("") 
-				|| m.getMemAge() == 0 || m.getMemEmail() == null || m.getMemEmail().equals("") 
-				|| m.getAuthList().size() == 0
-				) {
+				|| m.getMemAge() == 0 || m.getMemEmail() == null || m.getMemEmail().equals("")
+				|| m.getAuthList().size() == 0) {
 			// 회원가입을 할 수 없다. 하나라도 누락되어 있기 때문
 			
 			// 실패시 joinForm.do로 msgType과 msg내용을 보내야함
@@ -82,36 +81,34 @@ public class MemberController {
 			
 			m.setMemProfile("");
 			
-			// 추가 : 비밀번호 암호화
+			// 추가 : 비밀번호를 암호화하기
 			String encyPw = pwEncoder.encode(m.getMemPassword());
+			// System.out.println(encyPw);
 			m.setMemPassword(encyPw);
 			
 			int cnt = mapper.join(m);
 			
-			// 추가 : 권한테이블에 회원의 권한을 저장하기
+			// 추가: 권한테이블에 회원의 권한을 저장하기
 			List<Auth> list = m.getAuthList();
-			
 			for(Auth auth : list) {
 				if(auth.getAuth() != null) {
-					// 권한 값이 있을때만 권한테이블에 값 넣기
+					// 권한 값이 있을때만 권한테이블에 값 넣기 
 					Auth saveVO = new Auth();
 					saveVO.setMemID(m.getMemID()); // 회원아이디 넣기
 					saveVO.setAuth(auth.getAuth()); // 권한 넣기
-					
-					//권한 저장
+					// 권한 저장
 					mapper.authInsert(saveVO);
 				}
 			}
+			
 			
 			if(cnt == 1) {
 				System.out.println("회원가입 성공!");
 				rttr.addFlashAttribute("msgType", "성공메세지");
 				rttr.addFlashAttribute("msg", "회원가입에 성공했습니다.");
 				// 회원가입 성공 시 로그인처리까지 시키기
-				// m을 사용하면 number, id, idx 값이 비어있다.
-				// 회원가입 성공 시 회원정보 + 권한정보까지 가져오기
+				// 회원가입 성공시 회원정보 + 권한정보까지 가져오기
 				Member mvo = mapper.getMember(m.getMemID());
-				
 				session.setAttribute("mvo", mvo);
 				
 				return "redirect:/";
@@ -142,16 +139,18 @@ public class MemberController {
 		
 		Member mvo = mapper.login(m);
 		
-		// 암호화된 비밀번호와 입력받은 비밀번호 일치여부 체크
+		// 추가 비밀번호 일치여부 체크
 		if(mvo != null && pwEncoder.matches(m.getMemPassword(), mvo.getMemPassword())) {
-			
-			
+		
 			System.out.println("로그인 성공!");
 			rttr.addFlashAttribute("msgType", "성공메세지");
 			rttr.addFlashAttribute("msg", "로그인에 성공했습니다.");
 			
 			session.setAttribute("mvo", mvo);  // header에서 mvo로 세션에 저장된값 꺼내기로 했으니까 동일하게 mvo로
 			return "redirect:/";
+		
+		
+			
 		} else {
 			System.out.println("로그인 실패!");
 			rttr.addFlashAttribute("msgType", "실패메세지");
@@ -215,27 +214,24 @@ public class MemberController {
 			String encyPw = pwEncoder.encode(m.getMemPassword());
 			m.setMemPassword(encyPw);
 			
-			// 권한삭제
+			// 권한 삭제
 			mapper.authDelete(m.getMemID());
-			
-			// 권한입력
+			// 권한 입력 (수정)
 			List<Auth> list = m.getAuthList();
-			
 			for(Auth auth : list) {
 				if(auth.getAuth() != null) {
-					// 권한 값이 있을때만 권한테이블에 값 넣기
+					// 권한 값이 있을때만 권한테이블에 값 넣기 
 					Auth saveVO = new Auth();
 					saveVO.setMemID(m.getMemID()); // 회원아이디 넣기
 					saveVO.setAuth(auth.getAuth()); // 권한 넣기
-					
-					//권한 저장
+					// 권한 저장
 					mapper.authInsert(saveVO);
 				}
 			}
 			
 			int cnt = mapper.update(m);
 
-			if (cnt == 1) {
+			if (cnt != 0) {
 				System.out.println("수정 성공!");
 				rttr.addFlashAttribute("msgType", "성공메세지");
 				rttr.addFlashAttribute("msg", "회원정보 수정에 성공했습니다.");

@@ -22,11 +22,8 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="kr.spring.controller" />
+	
 	<!-- 내가 만든 Service도 scan 할 수 있게 명시 -->
 	<context:component-scan base-package="kr.spring.service" />
 	
 </beans:beans>
-
-
-
-

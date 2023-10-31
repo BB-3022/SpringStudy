@@ -45,24 +45,27 @@
 							<c:if test="${mvo.memProfile eq ''}">
 								<img src="${contextPath}/resources/images/default.png" style="width: 50px; height: 50px;" class="img-circle">
 							</c:if>
-							${mvo.memName}님 welcome.
+							
+							
+							<span style="color: gray;">${mvo.memName}님 welcome!</span>
+							
 							[
-			                  <!-- 권한 정보 띄우기 -->
-			                  <!-- 회원이 가진 권한의 리스트만큼 반복돌면서 꺼내기 -->
-			                  <c:forEach items="${mvo.authList}" var="auth">
-			                     <c:choose>
-			                        <c:when test="${auth.auth eq 'ROLE_USER'}">
-			                        U                        
-			                        </c:when>
-			                        <c:when test="${auth.auth eq 'ROLE_MANAGER'}">
-			                        M                       
-			                        </c:when>
-			                        <c:when test="${auth.auth eq 'ROLE_ADMIN'}">
-			                        A                       
-			                        </c:when>
-			                     </c:choose>
-			                  </c:forEach>
-			               ]
+								<!-- 권한 정보 띄우기 -->
+								<!-- 회원이 가진 권한의 리스트만큼 반복 돌면서 꺼내기 -->
+								<c:forEach items="${mvo.authList}" var="auth">
+									<c:choose>
+										<c:when test="${auth.auth eq 'ROLE_USER'}">
+											U
+										</c:when>
+										<c:when test="${auth.auth eq 'ROLE_MANAGER'}">
+											M
+										</c:when>
+										<c:when test="${auth.auth eq 'ROLE_ADMIN'}">
+											A
+										</c:when>
+									</c:choose>
+								</c:forEach>
+							]
 							
 						</li>
 						<li><a href="${contextPath}/updateForm.do"><span class="glyphicon glyphicon-edit"> 회원정보수정</span></a></li>

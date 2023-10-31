@@ -24,10 +24,8 @@ public class Member {
 	private String memProfile;
 	
 	// 자신의 권한 정보를 저장할 변수 
-	// 권한은 여러개가 될 수도 있기 때문에 List 를 사용한다.
+	// Why List<Auth>?
+	// 권한은 여러개가 될 수도 있기 때문에
 	private List<Auth> authList;
-
-
-
 	
 }

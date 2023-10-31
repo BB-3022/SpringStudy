@@ -4,7 +4,11 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<c:set var="cpath" value="${pageContext.request.contextPath}" />
+
+
+<c:set var="cpath" value="${pageContext.request.contextPath}"/>
+
+
 
 <!DOCTYPE html>
 <html>
@@ -33,29 +37,26 @@
 	    		<tr>
 	    			<td>내용</td>
 	    			<td>
-						<textarea class="form-control" readonly="readonly" rows="10" cols="" ><c:out value="${vo.content}" /></textarea>
-					</td>
+	    				<textarea class="form-control" rows="10" cols="" readonly="readonly"><c:out value="${vo.content}" /></textarea>
+	    			</td>
 	    		</tr>
 	    		<tr>
 	    			<td>작성자</td>
 	    			<td>${vo.writer}</td>
 	    		</tr>
-	    		
 	    		<tr>
 	    			<td colspan="2" style="text-align: center;">
 	    				<c:if test="${not empty mvo}">
-		    				<button data-btn="reply" class="btn btn-sm btn-primary">답글</button>
-		    				<button data-btn="modify" class="btn btn-sm btn-success">수정</button>
+	    					<button data-btn="reply" class="btn btn-sm btn-primary">답글</button> <!-- data-btn 에서 btn부분은 어떤 단어를 써도 OK -->
+	    					<button data-btn="modify"  class="btn btn-sm btn-success">수정</button>
 	    				</c:if>
 	    				<c:if test="${empty mvo}">
-		    				<button disabled="disabled" class="btn btn-sm btn-primary">답글</button>
-		    				<button disabled="disabled" class="btn btn-sm btn-success">수정</button>
+	    					<button disabled="disabled" class="btn btn-sm btn-primary">답글</button>
+	    					<button disabled="disabled" class="btn btn-sm btn-success">수정</button>
 	    				</c:if>
-	    			
-	    				<button data-btn="list" class="btn btn-sm btn-warning">목록</button>
+	    				<button data-btn="list"  class="btn btn-sm btn-warning">목록</button>
 	    			</td>
 	    		</tr>
-	    	
 	    	</table>
 	    	
 	    	<form id="frm" method="get" action="">
@@ -63,30 +64,36 @@
 	    		<input type="hidden" name="page" value="${cri.page}">
 	    		<input type="hidden" name="perPageNum" value="${cri.perPageNum}">
 	    		
-	    		<!-- type 과 keyword 를 넘기기 위한 부분 추가 -->
-			  	<input type="hidden" name="type" value="${cri.type}">
-			  	<input type="hidden" name="keyword" value="${cri.keyword}">
-			  	
+	    		<!-- type과 keyword를 넘기기위한 부분 추가 -->  
+				<input type="hidden" name="type" value="${cri.type}"> 
+				<input type="hidden" name="keyword" value="${cri.keyword}"> 
 	    	</form>
 	    	
+	    	
+	    	
+	    	
 	    </div>
-	    <div class="panel-footer">스프링게시판 - 박병관</div>
+	    <div class="panel-footer">스프링게시판 - 손민초</div>
 	  </div>
 	</div>
 	
+	
+	
+	
 	<script type="text/javascript">
+
 		// 링크처리
 		$(document).ready(function(){
 			$("button").on("click", function(e){
 				var formData = $("#frm");
 				var btn = $(this).data("btn");
-
-				if(btn == "reply"){
-					formData.attr("action","${cpath}/board/reply");
-				}else if(btn == "modify"){
-					formData.attr("action","${cpath}/board/modify");
-				}else if(btn == "list"){
-					formData.attr("action","${cpath}/board/list");
+				
+				if(btn == "reply") {
+					formData.attr("action", "${cpath}/board/reply");
+				} else if (btn == "modify") {
+					formData.attr("action", "${cpath}/board/modify");
+				} else if (btn == "list") {
+					formData.attr("action", "${cpath}/board/list");
 					formData.find("#idx").remove();
 				}
 				
@@ -94,30 +101,8 @@
 				
 			});
 		});
+	
 	</script>
 	
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

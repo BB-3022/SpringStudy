@@ -16,40 +16,42 @@ import kr.spring.service.BoardService;
 
 @Controller
 public class BoardController {
-	
+
 	@Autowired
 	private BoardService boardService;
 	
-	// 게시글 전체 조회
 	@RequestMapping("/list")
-	public String list(Model model) {
+	public String getList(Model model) {
 		
 		List<Board> list = boardService.getList();
+//		for(Board vo : list) {
+//			System.out.println(vo.toString());
+//		}
 		model.addAttribute("list", list);
 		
 		return "list";
 	}
 	
+	
 	@PostMapping("/register")
 	public String register(Board vo) {
-		
 		boardService.register(vo);
-		
 		return "redirect:/list";
+
 	}
 	
-	// list jsp 에서 비동기 방식으로 
-	@GetMapping("/get")
+	@GetMapping("/get") // responsebody...머라고.....? 후...
 	public @ResponseBody Board get(@RequestParam("idx") Long idx) {
 		Board vo = boardService.get(idx);
 		return vo;
 	}
-
+	
 	@GetMapping("/remove")
 	public String remove(@RequestParam("idx") Long idx) {
 		boardService.delete(idx);
 		return "redirect:/list";
 	}
+	
 	
 	@PostMapping("/modify")
 	public String modify(Board vo) {

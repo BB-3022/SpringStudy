@@ -13,8 +13,8 @@ public interface BoardService {
 	public List<Board> getList(Criteria cri);
 
 	public Member login(Member vo);
-
-	public void register(Board vo);
+	
+	public void insertSelectKey(Board vo);
 
 	public Board get(int idx);
 
@@ -25,14 +25,6 @@ public interface BoardService {
 	public void reply(Board vo);
 
 	public int totalCount();
-
+	
+	
 }
-
-
-
-
-
-
-
-
-

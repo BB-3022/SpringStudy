@@ -6,8 +6,14 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value=""/>
+		<item key="selection" value="@Auto"/>
 		<list key="findhistory">
+			<item value="@auto"/>
+			<item value="member"/>
+			<item value="member]"/>
+			<item value="kr.spring.entity.MEMBER03"/>
+			<item value="MEMBER"/>
+			<item value="base"/>
 			<item value="DispatcherServlet"/>
 			<item value="appServlet"/>
 			<item value="goForm"/>
@@ -17,14 +23,10 @@
 			<item value="mmeber"/>
 			<item value="forM"/>
 			<item value="frm"/>
-			<item value="d"/>
-			<item value="D"/>
-			<item value="insert"/>
-			<item value="isbn"/>
-			<item value="board"/>
-			<item value="talboard"/>
 		</list>
 		<list key="replacehistory">
+			<item value="kr.spring.entity.Member03"/>
+			<item value="MEMBER03"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

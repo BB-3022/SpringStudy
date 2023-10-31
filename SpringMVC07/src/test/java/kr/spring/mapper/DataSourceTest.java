@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-import org.apache.commons.logging.Log;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,81 +24,101 @@ import lombok.extern.log4j.Log4j;
 
 @Log4j // 테스트 실행결과를 콘솔창에 나오게 하기 위함
 @RunWith(SpringJUnit4ClassRunner.class) // 실행하기 위해 스프링 컨테이너에 올리는 코드
-@ContextConfiguration({"file:src/main/webapp/WEB-INF/spring/root-context.xml", // root-context.xml 경로를 잡아주는 과정
-	"file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml"}) // servlet-context.xml 경로를 잡아주는 과정
+@ContextConfiguration({ "file:src/main/webapp/WEB-INF/spring/root-context.xml", // root-context.xml 경로를 잡아주는 과정
+	"file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml" }) 
 @WebAppConfiguration // Servlet 컨테이너를 사용하기 위한 어노테이션
+
 public class DataSourceTest {
 
-	// root-context.xml 이 이상없는지 test 하는 클래스
+   // root-context.xml 이 이상없는지 test 하는 클래스
+   
+   // Connection 이 잘되는지 테스트
+	@Autowired // root-context.xml에 있는 id가 dataSource인 녀석을 사용하겠다.
+	private DataSource dataSource;
 	
-	// Connention 이 잘되는지 테스트
+	@Autowired
+	private BoardMapper mapper;
 	
-
+	@Autowired
+	private BoardServiceImpl service;
 	
 	@Autowired
 	private WebApplicationContext ctx; // Spring Container 메모리 공간 객체
 	
-	private MockMvc mockMvc; // 가상의 MVC 환경 만들어주는 객체, 뷰, 핸들러, 맵핑 등등 실행해준다.
+	private MockMvc mockMvc; // 가상의 MVC환경을 만들어주는 객체, 뷰, 핸들러, 맵핑 등등을 실행해줌  
 	
-	@Before // Test 실행하기 전에 먼저 실행하는 부분
+	
+	@Before // Test실행하기전에 먼저 실행하는 부분
 	public void setup() {
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(ctx).build();
 	}
 	
-//	@Test
-//	public void testInsert() {
-//		Board vo = new Board();
-//		vo.setMemID("aischool");
-//		vo.setTitle("코딩페스티벌");
-//		vo.setContent("1등-15만원 팀별 지급 됩니다.");
-//		vo.setWriter("교육운영부");
-//		mapper.insertSelectKey(vo);
-//	}
 	
-		@Test
-	public void testController() throws Exception{
+	
+	
+	@Test
+	public void testController() throws Exception {
 		log.info(
-				
-				mockMvc.perform(MockMvcRequestBuilders.get("/board/modify?idx=3")) //perform -> 요청하다
-				.andReturn() //리턴값을 받아오겠다.
-				.getModelAndView() // controoler의 model 값가 view 경로를 다 받아오겠다.
+				mockMvc.perform(MockMvcRequestBuilders.get("/board/list?idx=3")) // perform -> 요청하다
+				.andReturn() // return값을 받아오겠다
+				.getModelAndView() // controller의 model값과 view경로를 다 받아오겠다.
 				);
 	}
 	
-	// service test
-	@Autowired
-	private BoardServiceImpl service;
 	
+	// inset 테스트
 //	@Test
-//	public void testGetList() {
+//	public void testInsert() {
+//		Board vo = new Board();
+//		vo.setMemID("pbk");
+//		vo.setTitle("오늘은 목요일");
+//		vo.setContent("오늘 점심 머먹지");
+//		vo.setWriter("병관쌤");
+//		mapper.insertSelectKey(vo);
+//	}
+
+
+	// controller 테스트
+//	@Test
+//	public void testController() throws Exception {
+//		log.info(
+//				mockMvc.perform(MockMvcRequestBuilders.get("/board/list")) // perform -> 요청하다
+//				.andReturn() // return값을 받아오겠다
+//				.getModelAndView() // controller의 model값과 view경로를 다 받아오겠다.
+//				);
+//	}
+
+	
+	
+	// service 클래스 안에 getList가 잘 되는지 테스트해보시오
+//	@Test
+//	public void testGetList( ) {
 //		List<Board> list = service.getList();
-//		for(Board vo:list) {
+//		for(Board vo : list) {
 //			System.out.println(vo.toString());
 //		}
 //	}
+	 
 	
-	// mapper Test
-//	
-	@Autowired
-	private BoardMapper mapper;
-//	
+	// mapper테스트
 //	@Test
 //	public void testGetList() {
 //		List<Board> list = mapper.getList();
-//		for(Board vo:list) {
+//		for(Board vo : list) {
 //			System.out.println(vo.toString());
 //		}
 //	}
 	
-	@Autowired // root-context.xml 에 있는 id가 dataSource 인 것을 사용하겠다.
-	private DataSource dataSource;
-//	
+	
 //	@Test
 //	public void testConnection() {
-//		try( Connection conn = dataSource.getConnection() ){// 커넥션 정보를 가져온다.
+//		
+//		try ( Connection conn = dataSource.getConnection() ) {
 //			log.info(conn);
-//		}catch(Exception e) {
-//			 e.printStackTrace();
+//		} catch(Exception e) {
+//			e.printStackTrace();
 //		}
 //	}
+	
+
 }

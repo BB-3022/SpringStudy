@@ -1,28 +1,27 @@
 package kr.spring.mapper;
 
-import java.util.List;
 
-import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
 
-import kr.spring.entity.Board;
-import kr.spring.entity.Member;
 
-@Mapper // MyBatis 가 interface 를 찾기 위해 달아주는 부분
+import kr.spring.entity.Member03;
+
+@Mapper // MyBatis가 interface를 찾기위해 달아주는 부분
 public interface MemberMapper {
 
-	public Member registerCheck(String memID);
+	public Member03 registerCheck(String memID);
 
-	public int join(Member m);
+	public int join(Member03 m);
 
-	public Member login(Member m);
+	public Member03 login(Member03 m);
 
-	public int update(Member m);
+	public int update(Member03 m);
 
-	public void profileUpdate(Member mvo);
+	public void profileUpdate(Member03 mvo);
 
-	public Member getMember(String memID);
+	public Member03 getMember(String memID);
+	
+	
 	
 
 	

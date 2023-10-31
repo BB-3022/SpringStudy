@@ -15,49 +15,47 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-   <div class="container">
-     <jsp:include page="../common/header.jsp"></jsp:include>
-     <h2>Spring MVC03</h2>
-     <div class="panel panel-default">
-       <div class="panel-heading">Board</div>
-       <div class="panel-body">
+	<div class="container">
+		<jsp:include page="../common/header.jsp"></jsp:include>
+		<h2>Spring MVC03</h2>
+		<div class="panel panel-default">
+			<div class="panel-heading">Board</div>
+			<div class="panel-body">
 
-      <form action="${contextPath}/imageUpdate.do" method="post" enctype="multipart/form-data">
-      
-         <table style="text-align: center; border : 1px solid #dddddd" class="table table-bordered">
-            <tr>
-               <td style="width: 110px; vertical-align: middle;">아이디</td>
-               <td>${mvo.memID}</td>
-            </tr>
-            
-            <tr>
-               <td style="width: 110px; vertical-align: middle;">사진업로드</td>
-               <td>
-                  <span class="btn btn-default">
-                     이미지를 업로드하세요.
-                     <input type="file" name="memProfile">
-                  </span>
-               </td>
-            </tr>
-            
-            <tr>
-               <td colspan="2">
-                  <span id="passMessage" style="color:red;"></span>
-                  <input type="submit" class="btn btn-primary btn-sm pull-right" value="등록">
-                  <input type="reset" class="btn btn-warning btn-sm pull-right" value="취소">
-               </td>
-            </tr>
-         </table>      
-      </form>
-      </div>
-       <div class="panel-footer">스프링게시판 - 박병관</div>
-     </div>
-   </div>
-   
-   
-    <!-- Modal -->
+				<form action="${contextPath}/imageUpdate.do" method="post" enctype="multipart/form-data">
+
+					<table style="text-align: center; border: 1px solid #dddddd"
+						class="table table-bordered">
+						<tr>
+							<td style="width: 110px; vertical-align: middle;">아이디</td>
+							<td>${ mvo.memID }</td>
+						</tr>
+						<tr>
+							<td style="width: 110px; vertical-align: middle;">사진업로드</td>
+							<td>
+								<span class="btn btn-default">
+									이미지를 업로드하세요.
+									<input type="file" name="memProfile">
+								</span>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2"><span id="passMessage" style="color: red;"></span>
+								<input type="submit" class="btn btn-primary btn-sm pull-right"
+								value="등록"> <input type="reset"
+								class="btn btn-primary btn-sm pull-right" value="취소"></td>
+						</tr>
+					</table>
+				</form>
+			</div>
+			<div class="panel-footer">스프링게시판 - 손민초</div>
+		</div>
+	</div>
+
+	<!-- Modal -->
      <div class="modal fade" id="myModal" role="dialog">
        <div class="modal-dialog">
+       
          <!-- Modal content-->
          <div id="checkType" class="modal-content">
            <div class="modal-header panel-heading">
@@ -71,13 +69,14 @@
              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
            </div>
          </div>
+         
        </div>
      </div>
-  
-   
-      <!-- 회원가입 실패시 띄워줄 모달 -->
+     
+     <!-- 로그인 실패시 띄워줄 Modal -->
      <div class="modal fade" id="myMessage" role="dialog">
        <div class="modal-dialog">
+       
          <!-- Modal content-->
          <div id="messageType" class="modal-content">
            <div class="modal-header panel-heading">
@@ -93,23 +92,35 @@
          </div>
        </div>
      </div>
-   
-   
-   
-   
-   <script type="text/javascript">
-      
-      $(document).ready(function(){
-         if(${not empty msgType}){
-            if(${msgType eq "실패메세지"}){
-               $("#messageType").attr("class","modal-content panel-warning");
-            }
-            $("#myMessage").modal("show");
-         }
-      });
-   </script>
-   
+     
+     
+     
+     
+     
+
+	<script type="text/javascript">
+	  
+		
+	$(document).ready(function(){
+		if(${not empty msgType}) {
+			if(${msgType eq "실패메세지"}) {
+				$("#messageType").attr("class", "modal-content panel-warning");
+			}
+			$("#myMessage").modal("show");
+		}
+			
+			
+			
+		});
+		
+		
+		
+		
+		
+	</script>
+	
 </body>
 </html>
+
 
 

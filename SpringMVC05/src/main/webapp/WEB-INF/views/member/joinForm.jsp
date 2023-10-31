@@ -23,12 +23,12 @@
 			<div class="panel-body">
 
 				<form action="${contextPath}/join.do" method="post">
-					<!-- 
-						이제는 서버로 단순히 회원가입 정보만 전달하는 것이 아니라
-						서버에서 발행한 토근도 전달해야 회원가입이 가능하다.
-					 -->
+				<!-- 
+					이제는 서버로 단순히 회원가입 정보만 전달하는 것이 아니라
+					서버에서 발행한 토큰도 전달해야 회원가입이 가능하다.
+				 -->
 				 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-					
+
 					<input type="hidden" name="memPassword" id="memPassword" value="">
 
 					<table style="text-align: center; border: 1px solid #dddddd"
@@ -81,7 +81,6 @@
 								</div>
 							</td>
 						</tr>
-					
 						<tr>
 							<td style="width: 110px; vertical-align: middle;">이메일</td>
 							<td colspan="2"><input type="email" name="memEmail"
@@ -92,23 +91,22 @@
 						<!-- 권한 체크박스 -->
 						<tr>
 							<td style="width: 110px; vertical-align: middle;">권한</td>
-							<td colspans="2">
-								<input type="checkbox" name="authList[0].auth" value="ROLE_USER">ROLE_USER
-								<input type="checkbox" name="authList[1].auth" value="ROLE_MANAGER">ROLE_MANAGER
-								<input type="checkbox" name="authList[2].auth" value="ROLE_ADMIN">ROLE_ADMIN
+							<td colspan="2">
+								<input type="checkbox" name="authList[0].auth" value="ROLE_USER"> ROLE_USER 
+								<input type="checkbox" name="authList[1].auth" value="ROLE_MANAGER"> ROLE_MANAGER
+								<input type="checkbox" name="authList[2].auth" value="ROLE_ADMIN"> ROLE_ADMIN
 							</td>
 						</tr>
-						
 						<tr>
 							<td colspan="3"><span id="passMessage" style="color: red;"></span>
-								<input type="submit" class="btn btn-primary btn-sm pull-right"
+								<input type="submit" class="btn btn-warning btn-sm pull-right"
 								value="등록"> <input type="reset"
-								class="btn btn-primary btn-sm pull-right" value="취소"></td>
+								class="btn btn-success btn-sm pull-right" value="취소"></td>
 						</tr>
 					</table>
 				</form>
 			</div>
-			<div class="panel-footer">스프링게시판 - BBB</div>
+			<div class="panel-footer">스프링게시판 - 손민초</div>
 		</div>
 	</div>
 

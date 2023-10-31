@@ -24,11 +24,13 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 		if(member == null) {
 			throw new UsernameNotFoundException(username + "없음");
 		}
-		
+		  
 		return new CustomUser(member);
 		
 	}
 
+	
+	
 }
 
 

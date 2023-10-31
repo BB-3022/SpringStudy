@@ -21,23 +21,22 @@
 		<div class="panel panel-default">
 			<div class="panel-heading">Board</div>
 			<div class="panel-body">
-
+				
 				<form action="${contextPath}/login.do" method="post">
 				
-					<!-- 
-						서버에서 발행한 토근도 전달해야 로그인이 가능하다.
-					 -->
-				 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 
 					<table style="text-align: center; border: 1px solid #dddddd"
 						class="table table-bordered">
 						<tr>
 							<td style="width: 110px; vertical-align: middle;">아이디</td>
-							<td><input type="text" name="username" id="memID" class="form-control" maxlength="20" placeholder="아이디를 입력하세요." required="required"></td>
+							<td><input type="text" name="username" id="memID"
+								class="form-control" maxlength="20" placeholder="아이디를 입력하세요." required="required"></td>
 						</tr>
 						<tr>
 							<td style="width: 110px; vertical-align: middle;">비밀번호</td>
-							<td><input type="password" name="password" id="memPassword" class="form-control" maxlength="20" placeholder="비밀번호를 입력하세요." required="required"></td>
+							<td><input type="password" name="password" id="memPassword"
+								class="form-control" maxlength="20" placeholder="비밀번호를 입력하세요." required="required"></td>
 						</tr>
 						<tr>
 							<td colspan="2"><span id="passMessage" style="color: red;"></span>
@@ -48,7 +47,7 @@
 					</table>
 				</form>
 			</div>
-			<div class="panel-footer">스프링게시판 - BBB</div>
+			<div class="panel-footer">스프링게시판 - 손민초</div>
 		</div>
 	</div>
 
@@ -92,21 +91,27 @@
          </div>
        </div>
      </div>
+     
+     
+     
+     
+     
 
 	<script type="text/javascript">
 	  
 		
 	$(document).ready(function(){
 		// url 뒤에 ?error 확인
-
-	    if(${param.error != null}){
-            $("#messageType").attr("class","modal-content panel-warning");
-            $(".modal-body").text("아이디와 비밀번호를 확인해주세요");
-            $(".modal-title").text("실패 메세지");
-            $("#myMessage").modal("show");
-         }
-
-	
+			if(${param.error != null}){
+				$("#messageType").attr("class", "modal-content panel-warning");
+				$(".modal-body").text("아이디와 비밀번호를 확인해주세요.");
+				$(".modal-title").text("실패메세지");
+				$("#myMessage").modal("show");
+			}
+		
+		
+		
+		
 		if(${not empty msgType}) {
 			if(${msgType eq "실패메세지"}) {
 				$("#messageType").attr("class", "modal-content panel-warning");
@@ -116,14 +121,10 @@
 			}
 			$("#myMessage").modal("show");
 		}
-			
-			
-			
+		
 		});
 		
-		
-		
-		
+		  
 		
 	</script>
 	

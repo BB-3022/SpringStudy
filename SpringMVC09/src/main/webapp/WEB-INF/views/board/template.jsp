@@ -4,7 +4,10 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<c:set var="cpath" value="${pageContext.request.contextPath}" />
+
+
+<c:set var="cpath" value="${pageContext.request.contextPath}"/>
+
 
 <!DOCTYPE html>
 <html>
@@ -17,37 +20,23 @@
 </head>
 <body>
 	<div class="container">
-	  <h2>Spring MVC09</h2>
+	  <h2>Spring MVC098</h2>
 	  <div class="panel panel-default">
 	    <div class="panel-heading">Board</div>
 	    <div class="panel-body">
 	    	
 	    </div>
-	    <div class="panel-footer">스프링게시판 - 박병관</div>
+	    <div class="panel-footer">스프링게시판 - 손민초</div>
 	  </div>
 	</div>
 	
+	
+	
+	
 	<script type="text/javascript">
+
 	
 	</script>
 	
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

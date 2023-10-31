@@ -5,6 +5,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<!-- Spring Security 관련 라이브러리 -->
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <c:set var="cpath" value="${pageContext.request.contextPath}" />    
@@ -13,11 +14,11 @@
 <c:set var="user" value="${SPRING_SECURITY_CONTEXT.authentication.principal}" />
 <!-- 권한정보 -->
 <c:set var="auth" value="${SPRING_SECURITY_CONTEXT.authentication.authorities}" />
-   
+    
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>list.jsp</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
@@ -42,36 +43,27 @@
     		<div class="col-lg-2">
     			<div class="card" style="min-height: 500px; max-height: 1000px;">
     				<div class="card-body">
-						<h4 class="card-title">
-                    		 <sec:authentication property="principal.member.name" />
-                  		</h4>
+    					<h4 class="card-title">
+							<sec:authentication property="principal.member.name" />
+						</h4>
     					<p class="card-text">회원님 Welcome!</p>
     					<form action="${cpath}/member/logout">
-    						
     						<button type="submit" class="form-control btn btn-sm btn-primary">로그아웃</button>
     					</form>
     					
     					<br>
-    					현재 권한 : <sec:authentication property="principal.member.role"/>
-    					
-    					<!-- 권한에 따른 화면구성 다르게 보여주기 -->
+    					현재 권한 : <sec:authentication property="principal.member.role" />
+    					<br><br>
+    					<!-- 권한에 다른 화면구성 다르게 보여주기 -->
     					<sec:authorize access="hasRole('ADMIN')">
-    						<button class="btn btn-info form-control">관리자페이지</button>
-    						<br>
-    						<br>
-    						<button class="btn btn-success form-control">회원목록</button>
-    						<br>
-    						<br>
+    						<button class="btn btn-info form-control">관리자페이지</button><br><br>
+    						<button class="btn btn-success form-control">회원목록</button><br><br>
     						<button class="btn btn-warning form-control">개인정보수정</button>
     					</sec:authorize>
-    					
     					<sec:authorize access="hasRole('MANAGER')">
-    						<button class="btn btn-success form-control">회원목록</button>
-    						<br>
-    						<br>
+    						<button class="btn btn-success form-control">회원목록</button><br><br>
     						<button class="btn btn-warning form-control">개인정보수정</button>
     					</sec:authorize>
-    					
     					<sec:authorize access="hasRole('MEMBER')">
     						<button class="btn btn-warning form-control">개인정보수정</button>
     					</sec:authorize>
@@ -120,7 +112,7 @@
     						</div>
     						<div class="form-group">
     							<label for="writer">작성자</label>
-    							<input readonly="readonly" value="<sec:authentication property='principal.member.name'/>" type="text" class="form-control" id="writer" name="writer" placeholder="Enter Writer">
+    							<input value='<sec:authentication property="principal.member.name" />' type="text" class="form-control" id="writer" name="writer" placeholder="Enter Writer" readonly="readonly">
     						</div>
     						<div id="regDiv">
 	    						<button type="button" data-oper="register" class="btn btn-sm btn-primary">등록</button>
@@ -141,7 +133,7 @@
     		</div>
     	</div>
     </div> 
-    <div class="card-footer">스프링 - 박병관</div>
+    <div class="card-footer">스프링 - 손민초</div>
   </div>
   
   <script type="text/javascript">
@@ -202,17 +194,15 @@
   		
   		regForm.find("#idx").val(vo.idx);
   		
-  		if("${user.member.name}"== vo.writer){
-  			$("button[data-oper='updateForm']").attr("disabled",false);
-  			$("button[data-oper='remove']").attr("disabled",false);
-  		}else{
-  			$("button[data-oper='updateForm']").attr("disabled",true);
-  			$("button[data-oper='remove']").attr("disabled",true);
+  		if("${user.member.name}" == vo.writer) {
+  			$("button[data-oper='updateForm']").attr("disabled", false);
+  			$("button[data-oper='remove']").attr("disabled", false);
+  		} else {
+  			$("button[data-oper='updateForm']").attr("disabled", true);
+  			$("button[data-oper='remove']").attr("disabled", true);
   		}
-  		
-  		
+
   	}
-  	
   	
   	function goUpdate(){
   		var regForm = $("#regForm");
@@ -220,13 +210,6 @@
   		regForm.submit();
   	}
   	
-  	
-  
-  </script>
-  
-  
-  
-  
 
 </body>
 </html>

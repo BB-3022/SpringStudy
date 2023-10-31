@@ -3,16 +3,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<!-- Spring Security에서 제공하는 태그라이브러리 -->
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+
+<!-- Spring Security에서 제공하는 태그 라이브러리 -->
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 
-<!-- Spring Security 에서 제공하는 계정정보 (SecurityContext 안에 계정정보 가져오기) -->
+<!-- Spring Security 에서 제공하는 계정정보 (SecurityContext안에 계정정보 가져오기) -->
+
 <!-- 로그인한 계정정보 -->
 <c:set var="mvo" value="${SPRING_SECURITY_CONTEXT.authentication.principal}" />
-<!-- 권한정보 -->
+<!-- 권한 정보 -->
 <c:set var="auth" value="${SPRING_SECURITY_CONTEXT.authentication.authorities}" />
 
-<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 <!DOCTYPE html>
 <html>
@@ -32,13 +34,13 @@
 			<div class="panel-body">
 
 				<form action="${contextPath}/imageUpdate.do?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
-
 					<input type="hidden" name="memID" value="${mvo.member.memID}">
+				
 					<table style="text-align: center; border: 1px solid #dddddd"
 						class="table table-bordered">
 						<tr>
 							<td style="width: 110px; vertical-align: middle;">아이디</td>
-							<td>${mvo.member.memID }</td>
+							<td>${ mvo.member.memID }</td>
 						</tr>
 						<tr>
 							<td style="width: 110px; vertical-align: middle;">사진업로드</td>
@@ -58,7 +60,7 @@
 					</table>
 				</form>
 			</div>
-			<div class="panel-footer">스프링게시판 - BBB</div>
+			<div class="panel-footer">스프링게시판 - 손민초</div>
 		</div>
 	</div>
 

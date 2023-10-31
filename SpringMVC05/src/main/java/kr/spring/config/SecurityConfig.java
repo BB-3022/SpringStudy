@@ -18,6 +18,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	// 요청에 대한 보안 설정을 해주는 클래스
 	
 	
+	
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		// 요청에 대한 보안 설정하는 곳
@@ -25,13 +27,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		filter.setEncoding("UTF-8");
 		filter.setForceEncoding(true);
 		http.addFilterBefore(filter, CsrfFilter.class);
+		
 	}
+	
 	
 	@Bean // 패스워드 인코딩 기능을 메모리에 올리기
 	public PasswordEncoder passwordEncoder() {
-		// 비밀번호 암호화 메소드
+		// 비밀번호 암호화 메서드
+		
 		return new BCryptPasswordEncoder();
+		
 	}
+	
 	
 	
 	

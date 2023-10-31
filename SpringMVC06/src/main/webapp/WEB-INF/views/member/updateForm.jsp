@@ -3,16 +3,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<!-- Spring Security에서 제공하는 태그라이브러리 -->
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+
+<!-- Spring Security에서 제공하는 태그 라이브러리 -->
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 
-<!-- Spring Security 에서 제공하는 계정정보 (SecurityContext 안에 계정정보 가져오기) -->
+<!-- Spring Security 에서 제공하는 계정정보 (SecurityContext안에 계정정보 가져오기) -->
+
 <!-- 로그인한 계정정보 -->
 <c:set var="mvo" value="${SPRING_SECURITY_CONTEXT.authentication.principal}" />
-<!-- 권한정보 -->
+<!-- 권한 정보 -->
 <c:set var="auth" value="${SPRING_SECURITY_CONTEXT.authentication.authorities}" />
 
-<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 <!DOCTYPE html>
 <html>
@@ -32,9 +34,8 @@
 			<div class="panel-body">
 
 				<form action="${contextPath}/update.do" method="post">
-
+				
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-					
 					<input type="hidden" name="memPassword" id="memPassword" value="">
 					<input type="hidden" name="memID" id="memID" value="${mvo.member.memID}">
 					<input type="hidden" name="memProfile" value="${mvo.member.memProfile}">
@@ -106,40 +107,36 @@
 						</tr>
 						<tr>
 							<td style="width: 110px; vertical-align: middle;">이메일</td>
-							<td colspan="2"><input type="email" name="memEmail"
-								id="memEmail" class="form-control" maxlength="20"
-								placeholder="이메일을 입력하세요." value="${mvo.member.memEmail}"></td>
+							<td colspan="2"><input type="email" name="memEmail" id="memEmail" class="form-control" maxlength="20" placeholder="이메일을 입력하세요." value="${mvo.member.memEmail}"></td>
 						</tr>
 						
-						<!-- 가지고있는 권한 체크 및 권한 수정부분 -->
-			            <tr>
-			               <td style="width: 110px; vertical-align: middle;">사용자권한</td>
-			               <td colspan="2">
-			                  <input value="ROLE_USER" name="authList[0].auth" type="checkbox"
-			                     <c:forEach items="${mvo.member.authList}" var="auth">
-			                        <c:if test="${auth.auth eq 'ROLE_USER'}">
-			                           checked
-			                        </c:if>
-			                     </c:forEach>
-			                   /> ROLE_USER               
-			                  <input value="ROLE_MANAGER" name="authList[1].auth" type="checkbox" 
-			                  	<c:forEach items="${mvo.member.authList}" var="auth">
-			                        <c:if test="${auth.auth eq 'ROLE_MANAGER'}">
-			                           checked
-			                        </c:if>
-			                     </c:forEach>
-			                  /> ROLE_MANAGER               
-			                  <input value="ROLE_ADMIN" name="authList[2].auth" type="checkbox" 
-			                  	<c:forEach items="${mvo.member.authList}" var="auth">
-			                        <c:if test="${auth.auth eq 'ROLE_ADMIN'}">
-			                           checked
-			                        </c:if>
-			                     </c:forEach>
-			                  /> ROLE_ADMIN
-			               </td>
-			            </tr>
-						
-						
+						<!-- 가지고 있는 권한 체크 및 권한 수정 부분 -->
+						<tr>
+							<td style="width: 110px; vertical-align: middle;">사용자권한</td>
+							<td colspan="2">
+								<input type="checkbox" name="authList[0].auth" value="ROLE_USER"
+									<c:forEach items="${mvo.member.authList}" var="auth">
+										<c:if test="${auth.auth eq 'ROLE_USER'}">
+											checked
+										</c:if>
+									</c:forEach>
+								 /> ROLE_USER
+								<input type="checkbox" name="authList[1].auth" value="ROLE_MANAGER"
+									<c:forEach items="${mvo.member.authList}" var="auth">
+										<c:if test="${auth.auth eq 'ROLE_MANAGER'}">
+											checked
+										</c:if>
+									</c:forEach>
+								 /> ROLE_MANAGER
+								<input type="checkbox" name="authList[2].auth" value="ROLE_ADMIN" 
+									<c:forEach items="${mvo.member.authList}" var="auth">
+										<c:if test="${auth.auth eq 'ROLE_ADMIN'}">
+											checked
+										</c:if>
+									</c:forEach>
+								/> ROLE_ADMIN
+							</td>
+						</tr>
 						<tr>
 							<td colspan="3"><span id="passMessage" style="color: red;"></span>
 								<input type="submit" class="btn btn-primary btn-sm pull-right"
@@ -149,7 +146,7 @@
 					</table>
 				</form>
 			</div>
-			<div class="panel-footer">스프링게시판 - BBB</div>
+			<div class="panel-footer">스프링게시판 - 손민초</div>
 		</div>
 	</div>
 

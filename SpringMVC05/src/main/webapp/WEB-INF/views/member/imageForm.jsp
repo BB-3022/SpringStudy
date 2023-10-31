@@ -23,7 +23,8 @@
 			<div class="panel-body">
 
 				<form action="${contextPath}/imageUpdate.do?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
-
+				
+				
 					<table style="text-align: center; border: 1px solid #dddddd"
 						class="table table-bordered">
 						<tr>

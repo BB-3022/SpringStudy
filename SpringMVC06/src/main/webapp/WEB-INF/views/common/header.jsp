@@ -6,15 +6,15 @@
 <!-- contextPath 값을 내장객체 변수로 저장 -->
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
-<!-- Spring Security에서 제공하는 태그라이브러리 -->
+<!-- Spring Security에서 제공하는 태그 라이브러리 -->
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 
-<!-- Spring Security 에서 제공하는 계정정보 (SecurityContext 안에 계정정보 가져오기) -->
+<!-- Spring Security 에서 제공하는 계정정보 (SecurityContext안에 계정정보 가져오기) -->
+
 <!-- 로그인한 계정정보 -->
 <c:set var="mvo" value="${SPRING_SECURITY_CONTEXT.authentication.principal}" />
-<!-- 권한정보 -->
+<!-- 권한 정보 -->
 <c:set var="auth" value="${SPRING_SECURITY_CONTEXT.authentication.authorities}" />
-
 
 <!DOCTYPE html>
 <html>
@@ -39,15 +39,14 @@
 					<li class="active"><a href="${contextPath}/">메인</a></li>
 					<li><a href="boardMain.do">게시판</a></li>
 				</ul>
-				<!-- 로그인 여부를 판단 isAnonymous-->
+
 				<security:authorize access="isAnonymous()">
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href="${contextPath}/loginForm.do"><span class="glyphicon glyphicon-log-in"> 로그인</span></a></li>
 						<li><a href="${contextPath}/joinForm.do"><span class="glyphicon glyphicon-user"> 회원가입</span></a></li>
 					</ul>
 				</security:authorize>
-				
-				<!-- 로그인 여부를 판단 isAuthenticated-->
+					
 				<security:authorize access="isAuthenticated()">
 					<ul class="nav navbar-nav navbar-right">
 						<li>
@@ -57,36 +56,36 @@
 							<c:if test="${mvo.member.memProfile eq ''}">
 								<img src="${contextPath}/resources/images/default.png" style="width: 50px; height: 50px;" class="img-circle">
 							</c:if>
-							${mvo.member.memName}님 welcome.
+							
+							<span style="color: gray;">${mvo.member.memName}님 welcome!</span>
+							
 							[
-			                  <!-- 권한 정보 띄우기 -->
-			                  <!-- 회원이 가진 권한의 리스트만큼 반복돌면서 꺼내기 -->
-<%-- 			                  <c:forEach items="${mvo.authList}" var="auth">
-			                     <c:choose>
-			                        <c:when test="${auth.auth eq 'ROLE_USER'}">
-			                        U                        
-			                        </c:when>
-			                        <c:when test="${auth.auth eq 'ROLE_MANAGER'}">
-			                        M                       
-			                        </c:when>
-			                        <c:when test="${auth.auth eq 'ROLE_ADMIN'}">
-			                        A                       
-			                        </c:when>
-			                     </c:choose>
-			                  </c:forEach> --%>
-			                  
-			                  <!-- 권한정보를 시큐리티를 통해서 꺼내기 -->
-			                  <security:authorize access="hasRole('ROLE_USER')">
-			                  U
-			                  </security:authorize>
-			                  <security:authorize access="hasRole('ROLE_MANAGER')">
-			                  M
-			                  </security:authorize>
-			                  <security:authorize access="hasRole('ROLE_ADMIN')">
-			                  A
-			                  </security:authorize>
-			                  
-			               ]
+								<security:authorize access="hasRole('ROLE_USER')">
+									U
+								</security:authorize>
+								<security:authorize access="hasRole('ROLE_MANAGER')">
+									M
+								</security:authorize>
+								<security:authorize access="hasRole('ROLE_ADMIN')">
+									A
+								</security:authorize>
+							
+								<!-- 권한 정보 띄우기 -->
+								<!-- 회원이 가진 권한의 리스트만큼 반복 돌면서 꺼내기 -->
+								<%--<c:forEach items="${mvo.authList}" var="auth">
+									<c:choose>
+										<c:when test="${auth.auth eq 'ROLE_USER'}">
+											U
+										</c:when>
+										<c:when test="${auth.auth eq 'ROLE_MANAGER'}">
+											M
+										</c:when>
+										<c:when test="${auth.auth eq 'ROLE_ADMIN'}">
+											A
+										</c:when>
+									</c:choose>
+								</c:forEach> --%>
+							]
 							
 						</li>
 						<li><a href="${contextPath}/updateForm.do"><span class="glyphicon glyphicon-edit"> 회원정보수정</span></a></li>
@@ -95,35 +94,37 @@
 					</ul>
 				</security:authorize>
 
-
-			</div>
+ 			</div>
 		</div>
 	</nav>
 	
+	
 	<script type="text/javascript">
-		//CSRF 토큰 값 가져오기
-		// 비동기 방식
+		
+		// CSRF 토큰 값 가져오기
 		var csrfHeaderName = "${_csrf.headerName}";
-		   var csrfTokenValue = "${_csrf.token}";
-		   
-		   function logout(){
-		      $.ajax({
-		         url : "${contextPath}/logout",
-		         type : "post",
-		         beforeSend : function(xhr){
-		            xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
-		         },
-		         success : function(){
-		            location.href = "${contextPath}/";
-		         },
-		         error : function(){
-		            alert("error");
-		         }
-		      });
-		   }
+		var csrfTokenValue = "${_csrf.token}";
+		
+		function logout() {
+			$.ajax({
+				url : "${contextPath}/logout",
+				type : "post",
+				beforeSend : function(xhr) {
+					xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+				},
+				success : function() {
+					location.href = "${contextPath}/";
+				},
+				error : function() {
+					alert("error");
+				}
+			});
+		}
+	
+	
+	
 	
 	</script>
-	
 	
 	
 </body>

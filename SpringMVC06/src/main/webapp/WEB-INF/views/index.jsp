@@ -58,7 +58,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="panel-footer">스프링 - BBB</div>
+		<div class="panel-footer">스프링 - 손민초</div>
 	</div>
 	</div>
 	

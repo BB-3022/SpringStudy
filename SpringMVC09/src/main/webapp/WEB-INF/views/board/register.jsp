@@ -4,7 +4,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<c:set var="cpath" value="${pageContext.request.contextPath}" />
+<c:set var="cpath" value="${pageContext.request.contextPath}"/>
 
 <!DOCTYPE html>
 <html>
@@ -21,63 +21,51 @@
 	  <div class="panel panel-default">
 	    <div class="panel-heading">Board</div>
 	    <div class="panel-body">
+	    
 	    	<form action="${cpath}/board/register" method="post">
 	    		
+	    		
+	    		
 	    		<!-- 
-	    			문제. post방식의 register요청이 들어왔을때
-	    			BoardController에서는 BoardService의 register 메소드를 통해서
+	    			문제. post 방식의 register요청이 들어왔을 때
+	    			BoardController에서는 BoardService의 register 메서드를 통해서
 	    			게시글 입력기능을 수행하고
-	    			list.jsp로 이동시키시오
+	    			list.jsp로 이동시켜라
 	    		 -->
 	    		
-
-				<input type="hidden" name="memID" value="${mvo.memID}">
-	    	
-	    		<div class="form-group">
-	    			<label>제목</label>
-	    			<input type="text" name="title" class="form-control">
-	    		</div>
+	    		<input type="hidden" name="memID" value="${mvo.memID}">
 	    		
-	    		<div class="form-group">
-	    			<label>내용</label>
-	    			<textarea class="form-control" name="content" rows="10" cols=""></textarea>
-	    		</div>
-	    	
-	    		<div class="form-group">
-	    			<label>작성자</label>
-	    			<input value="${mvo.memName}" readonly="readonly" type="text" name="writer" class="form-control">
-	    		</div>
 	    		
-	    		<button type="submit" class="btn btn-default btn-sm">등록</button>
-	    		<button type="reset" class="btn btn-default btn-sm">취소</button>
-	    	
+				<div class="form-group">
+					<label>제목</label>
+					<input type="text" name="title" class="form-control">
+				</div>
+				<div class="form-group">
+					<label>내용</label>
+					<textarea class="form-control" name="content" rows="10" cols=""></textarea>
+				</div>
+				<div class="form-group">
+					<label>작성자</label>
+					<input value="${mvo.memName}" type="text" name="writer" class="form-control" readonly="readonly">
+				</div>
+				
+				<button type="submit" class="btn btn-default btn-sm">등록</button>
+				<button type="reset" class="btn btn-default btn-sm">취소</button>
+				
 	    	</form>
+	    	
 	    </div>
-	    <div class="panel-footer">스프링게시판 - 박병관</div>
+	    <div class="panel-footer">스프링게시판 - 손민초</div>
 	  </div>
 	</div>
 	
+	
+	
+	
 	<script type="text/javascript">
+
 	
 	</script>
 	
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

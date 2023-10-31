@@ -4,45 +4,43 @@
 
 	<sql id="search">
 		<if test="type=='writer'">
-			where writer like concat('%', #{keyword}, '%')
+			WHERE WRITER LIKE CONCAT('%', #{keyword}, '%')
 		</if>
 		<if test="type=='title'">
-			where title like concat('%', #{keyword}, '%')
+			WHERE TITLE LIKE CONCAT('%', #{keyword}, '%')
 		</if>
 		<if test="type=='content'">
-			where content like concat('%', #{keyword}, '%')
+			WHERE CONTENT LIKE CONCAT('%', #{keyword}, '%')
 		</if>
 	</sql>
-	
-	<select id="getList" parameterType="kr.spring.entity.Criteria"  resultType="kr.spring.entity.Board">
+
+
+
+	<select id="getList" parameterType="kr.spring.entity.Criteria" resultType="kr.spring.entity.Board">
 		SELECT * FROM TBLBOARD
-		<include refid="search"/> 
+		<include refid="search" />
 		ORDER BY BOARDGROUP DESC, BOARDSEQUENCE ASC
 		LIMIT #{pageStart}, #{perPageNum}
 	</select>
-	
+
 	<insert id="insert" parameterType="kr.spring.entity.Board">
-		INSERT INTO TBLBOARD(IDX, MEMID, TITLE, CONTENT, WRITER,
-		BOARDGROUP, BOARDSEQUENCE, BOARDLEVEL, BOARDAVAILABLE)
-		SELECT IFNULL(MAX(IDX) + 1, 1), #{memID}, #{title}, #{content},
-		#{writer}, IFNULL(MAX(BOARDGROUP) + 1, 1), 0, 0, 1
+		INSERT INTO TBLBOARD (IDX, MEMID, TITLE, CONTENT, WRITER, BOARDGROUP, BOARDSEQUENCE, BOARDLEVEL, BOARDAVAILABLE) 
+		SELECT IFNULL(MAX(IDX)+1, 1), #{memID}, #{title}, #{content}, #{writer}, IFNULL(MAX(BOARDGROUP)+1, 1), 0, 0, 1
 		FROM TBLBOARD
 	</insert>
 	
 	<insert id="insertSelectKey" parameterType="kr.spring.entity.Board">
-		<selectKey keyProperty="idx,boardGroup" resultType="kr.spring.entity.Board" order="BEFORE">
-			SELECT IFNULL(MAX(IDX) + 1, 1) as idx,
-				   IFNULL(MAX(BOARDGROUP) + 1, 1) as boardGroup
-				   FROM TBLBOARD
+		<selectKey keyProperty="idx,boardGroup" resultType="kr.spring.entity.Board" order="BEFORE"> <!-- keyProperty값은 Board안의 데이터타입과 같아야함. 쉼표띄어쓰기 노 -->
+			SELECT IFNULL(MAX(IDX)+1, 1) as idx, 
+				   IFNULL(MAX(BOARDGROUP)+1, 1) as boardGroup
+			  FROM TBLBOARD
 		</selectKey>
-		INSERT INTO TBLBOARD(IDX, MEMID, TITLE, CONTENT, WRITER,
-		BOARDGROUP, BOARDSEQUENCE, BOARDLEVEL, BOARDAVAILABLE)
-		values(#{idx},#{memID},#{title},#{content},#{writer},#{boardGroup},0,0,1)
+		INSERT INTO TBLBOARD (IDX, MEMID, TITLE, CONTENT, WRITER, BOARDGROUP, BOARDSEQUENCE, BOARDLEVEL, BOARDAVAILABLE) 
+		VALUES ( #{idx}, #{memID}, #{title}, #{content}, #{writer},#{boardGroup}, 0, 0, 1)
 	</insert>
 	
-	
 	<select id="login" parameterType="kr.spring.entity.Member" resultType="kr.spring.entity.Member">
-		SELECT * FROM TBLMEMBER WHERE MEMID = #{memID} AND MEMPWD = #{memPwd}
+		SELECT * FROM TBLMEMBER WHERE MEMID = #{memID} AND MEMPWD = #{memPwd}		
 	</select>
 	
 	<select id="read" parameterType="int" resultType="kr.spring.entity.Board">
@@ -61,41 +59,30 @@
 		WHERE IDX = #{idx}
 	</delete>
 	
-	<update id="replySeqUpdate" parameterType="kr.spring.entity.Board">
-		UPDATE TBLBOARD
-		SET BOARDSEQUENCE = BOARDSEQUENCE + 1
-		WHERE BOARDGROUP = #{boardGroup}
-		AND BOARDSEQUENCE > #{boardSequence}
-	</update>
+   <update id="replySeqUpdate" parameterType="kr.spring.entity.Board">
+         UPDATE TBLBOARD
+         SET BOARDSEQUENCE = BOARDSEQUENCE + 1
+         WHERE BOARDGROUP = #{boardGroup}
+         AND BOARDSEQUENCE > #{boardSequence}
+   </update>
+   
+   <insert id="replyInsert" parameterType="kr.spring.entity.Board">
+      <selectKey keyProperty="idx" resultType="kr.spring.entity.Board" order="BEFORE">
+         SELECT IFNULL(MAX(IDX) + 1, 1) as idx       
+               FROM TBLBOARD
+      </selectKey>
+      INSERT INTO TBLBOARD(IDX, MEMID, TITLE, CONTENT, WRITER,
+      BOARDGROUP, BOARDSEQUENCE, BOARDLEVEL, BOARDAVAILABLE)
+      values(#{idx},#{memID},#{title},#{content},#{writer},
+      #{boardGroup},#{boardSequence},#{boardLevel},1)
+   </insert>
 	
-	<insert id="replyInsert" parameterType="kr.spring.entity.Board">
-		<selectKey keyProperty="idx" resultType="kr.spring.entity.Board" order="BEFORE">
-			SELECT IFNULL(MAX(IDX) + 1, 1) as idx
-				   FROM TBLBOARD
-		</selectKey>
-		INSERT INTO TBLBOARD(IDX, MEMID, TITLE, CONTENT, WRITER,
-		BOARDGROUP, BOARDSEQUENCE, BOARDLEVEL, BOARDAVAILABLE)
-		values(#{idx},#{memID},#{title},#{content},#{writer},
-		#{boardGroup}, #{boardSequence}, #{boardLevel}, 1)
-	</insert>
 	
-	<select id="totalCount" resultType="int" parameterType="kr.spring.entity.Criteria">
+	<select id="totalCount" parameterType="kr.spring.entity.Criteria" resultType="int">
 		SELECT COUNT(*) FROM TBLBOARD
-		<include refid="search"/> 
+		<include refid="search"  />
 	</select>
 	
 	
+
 </mapper>
-
-
-
-
-
-
-
-
-
-
-
-
-

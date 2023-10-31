@@ -21,13 +21,10 @@
 		<div class="panel panel-default">
 			<div class="panel-heading">Board</div>
 			<div class="panel-body">
-
+				
 				<form action="${contextPath}/login.do" method="post">
 				
-					<!-- 
-						서버에서 발행한 토근도 전달해야 로그인이 가능하다.
-					 -->
-				 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 
 					<table style="text-align: center; border: 1px solid #dddddd"
 						class="table table-bordered">

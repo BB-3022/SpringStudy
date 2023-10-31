@@ -11,24 +11,27 @@ import kr.spring.repository.MemberRepository;
 
 @SpringBootTest
 class SpringMvc11ApplicationTests {
-
+	
 	@Autowired
 	private MemberRepository memberRepository;
-	
+
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
+	
 	@Test
 	void contextLoads() {
-		//회원가입테스트
+		// 회원가입테스트
 		Member m = new Member();
-		m.setUsername("CCC");
+		m.setUsername("pcw");
 		m.setPassword(passwordEncoder.encode("1234"));
-		m.setName("씨씨씨");
+		m.setName("박치우");
 		m.setRole(Role.MEMBER);
 		m.setEbled(true);
 		memberRepository.save(m);
-		
 	}
+	
+	
+	
 
 }

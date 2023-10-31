@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.User;
 
 import lombok.Data;
 
+
 @Data
 public class CustomUser extends User{
 	// 우리가 만든 회원정보 -> Member를 

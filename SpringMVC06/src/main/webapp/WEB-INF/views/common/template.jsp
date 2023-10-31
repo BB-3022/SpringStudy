@@ -21,7 +21,7 @@
 	  <div class="panel panel-default">
 	    <div class="panel-heading">Board</div>
 	    <div class="panel-body">Panel Content</div>
-	    <div class="panel-footer">스프링게시판 - BBB</div>
+	    <div class="panel-footer">스프링게시판 - 손민초</div>
 	  </div>
 	</div>
 </body>

@@ -1,19 +1,16 @@
 SELECT * FROM BOARD;
 
-INSERT INTO BOARD(TITLE, CONTENT, WRITER)
-VALUES('월요일','수라상 감자탕 오픈','명훈쌤');
+INSERT INTO BOARD (TITLE, CONTENT, WRITER)
+VALUES ('오늘 저녁에 하늘마당에서 보실 분', '내가 치킨 쏜다', '명훈쌤');
 
-INSERT INTO BOARD(TITLE, CONTENT, WRITER)
-VALUES('화요일','오므라이스 먹으러가자','조준용');
+INSERT INTO BOARD (TITLE, CONTENT, WRITER)
+VALUES ('안녕하세요 손석구입니다!', '너 낙지된거야', '손썩구');
 
-INSERT INTO BOARD(TITLE, CONTENT, WRITER)
-VALUES('수요일','일주일의 절반','박병관');
+INSERT INTO BOARD (TITLE, CONTENT, WRITER)
+VALUES ('이제 귀찮아요', '쓰는거', '힝');
 
-INSERT INTO BOARD(TITLE, CONTENT, WRITER)
-VALUES('목요일','하루만 지나면 금요일','박보배');
+INSERT INTO BOARD (TITLE, CONTENT, WRITER)
+VALUES ('이번주 금요일 시간 어때요', '곱창맛있겠다', '준용쌤');
 
-INSERT INTO BOARD(TITLE, CONTENT, WRITER)
-VALUES('금요일','금요일이다!','손민초');
-
-INSERT INTO BOARD(TITLE, CONTENT, WRITER)
-VALUES('토요일','주말좋아','김태연');
+INSERT INTO BOARD (TITLE, CONTENT, WRITER)
+VALUES ('커피 먹고싶다', '오트 바닐라', '매머드');

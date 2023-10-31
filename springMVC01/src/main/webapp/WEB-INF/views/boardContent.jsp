@@ -1,9 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-<!-- JSTL 사용  -->
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,42 +14,47 @@
 <body>
 	<% pageContext.setAttribute("newLineChar", "\n"); %>
 	<div class="container">
-	 <h2>Spring MVC01</h2>
-		 <div class="panel panel-default">
-		   <div class="panel-heading">Board</div>
-		   <div class="panel-body">
-		   	
-		   	<table class="table">
-		   		<tr>
-		   			<td>제목</td>
-		   			<td>${vo.title}</td>
-		   		</tr>
-		   		<tr>
-		   			<td>내용</td>
-		   			<td>
-		   				${fn:replace(vo.content, newLineChar, "<br/>")}
-		   			</td>
-		   		</tr>
-		   		<tr>
-		   			<td>작성자</td>
-		   			<td>${vo.writer}</td>
-		   		</tr>
-		   		<tr>
-		   			<td>작성일</td>
-		   			<td>${fn:split(vo.indate," ")[0] }</td>
-		   		</tr>
-		   		<tr>
-		   			<td colspan="2" align="center">
-		   				<a href="../boardUpdateForm.do/${vo.idx}" class="btn btn-success btn-sm">수정화면</a>
-		   				<a href="../boardDelete.do/${vo.idx}" class="btn btn-warning btn-sm">삭제</a>
-		   				<a href="../boardList.do" class="btn btn-info btn-sm">목록</a>
-		   			</td>
-		   		</tr>
-		   	</table>
-		   
-		   </div>  
-		   <div class="panel-footer">Spring 게시판 - BBB</div>
-		 </div>
+	  <h2>Spring MVC01</h2>
+	  <div class="panel panel-default">
+	    <div class="panel-heading">Board</div>
+	    <div class="panel-body">
+	    
+	    	<table class="table">
+				<tr>
+					<td>제목</td>
+					<td>${vo.title}</td>
+					
+				</tr>	    	
+				<tr>
+					<td>내용</td>
+					<td>
+						${fn:replace( vo.content, newLineChar, "<br/>" )}
+					</td>
+				</tr>
+				<tr>
+					<td>작성자</td>
+					<td>${vo.writer}</td>
+				</tr>
+				<tr>
+					<td>작성일</td>
+					<td>
+						${fn:split( vo.indate, " ")[0]}
+					</td>
+				</tr>	
+				<tr>
+					<td colspan="2" align="center">
+						<a href="../boardUpdateForm.do/${vo.idx}" class="btn btn-success btn-sm">수정화면</a>
+						<a href="../boardDelete.do/${vo.idx}" class="btn btn-warning btn-sm">삭제</a>
+						<a href="../boardList.do" class="btn btn-info btn-sm">목록</a>
+					</td>
+				</tr>
+	    	</table>
+	    </div>
+	    <div class="panel-footer"> 스프링게시판 - 손민초 </div>
+	  </div>
 	</div>
 </body>
 </html>
+
+
+

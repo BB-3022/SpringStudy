@@ -32,14 +32,11 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
-		
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
-		
-		
 				
 		<!-- AspectJ -->
 		<dependency>
@@ -123,7 +120,7 @@
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
 			<scope>test</scope>
-		</dependency> 
+		</dependency>    
 		
 		<!-- lombok API 추가 -->
 		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
@@ -134,7 +131,7 @@
 		    <scope>provided</scope>
 		</dependency>
 		
-		<!-- MyBatis를 사용하기위한 API추가 -->
+		<!-- MyBatis를 사용하기 위한 API추가 -->
 		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
 		<dependency>
 		    <groupId>org.mybatis</groupId>
@@ -150,15 +147,15 @@
 		    <version>3.4.1</version>
 		</dependency>
 		
-		<!-- MyBatis에서 Connection을 하기위한 MySQL Driver API 추가 -->
+		<!-- MyBatis에서 Connection을 하기위한 mySQL Driver API 추가 -->
 		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 		<dependency>
-		    <groupId>mysql</groupId>
-		    <artifactId>mysql-connector-java</artifactId>
-		    <version>5.1.42</version>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.42</version>
 		</dependency>
 		
-		<!-- Spring에서 MyBatis를 통해 JDBC를 사용하기위한 API 추가 -->
+		<!-- Spring에서 MyBatis를 통해 JDBC를 사용하기 위한 API 추가 -->
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
 		<dependency>
 		    <groupId>org.springframework</groupId>
@@ -175,7 +172,8 @@
 		</dependency>
 		
 		
-		       
+		
+		    
 	</dependencies>
     <build>
         <plugins>
